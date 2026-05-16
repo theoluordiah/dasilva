@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Da Silva Crochet ✿ Handmade Anime Magic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Fredoka:wght@300;400;500;600;700&family=Yomogi&family=Kiwi+Maru:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+:root{
+--hot-pink:#FF4FA3;
+--bubblegum:#FF85C8;
+--lemon:#FFE94F;
+--mint:#4FFFD4;
+--sky:#4FB8FF;
+--coral:#FF6B6B;
+--lavender:#C084FC;
+--lime:#A3FF4F;
+--orange:#FF9F1C;
+--cream:#FFFBF0;
+--white:#FFFFFF;
+--ink:#1A0A2E;
+--border:3px solid var(--ink);
+--shadow:4px 4px 0 var(--ink);
+--shadow-big:6px 6px 0 var(--ink);
+--shadow-pink:4px 4px 0 var(--hot-pink);
+}
+
+body{
+  background:var(--cream);
+  font-family:'Fredoka',sans-serif;
+  cursor:none;
+  overflow-x:hidden;
+}
+
+/* ── CURSOR ─────────────────────── */
+#cur{position:fixed;width:20px;height:20px;border-radius:50%;background:var(--hot-pink);border:2px solid var(--ink);pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:transform .08s;mix-blend-mode:normal}
+#cur2{position:fixed;width:40px;height:40px;border-radius:50%;border:2px solid var(--hot-pink);pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .18s ease;opacity:.5}
+body:has(a:hover) #cur, body:has(button:hover) #cur{transform:translate(-50%,-50%) scale(2.5);background:var(--lemon)}
+
+/* ── LOADER ─────────────────────── */
+#loader{
+  position:fixed;inset:0;z-index:99999;
+  background:var(--hot-pink);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:opacity .6s ease, visibility .6s;
+}
+#loader.out{opacity:0;visibility:hidden}
+.ld-title{
+  font-family:'Lilita One',cursive;
+  font-size:4rem;color:var(--white);
+  text-shadow:4px 4px 0 var(--ink);
+  animation:ldBounce .6s ease infinite alternate;
+}
+@keyframes ldBounce{from{transform:translateY(0)}to{transform:translateY(-12px)}}
+.ld-yarn{font-size:5rem;animation:ldSpin 1s linear infinite}
+@keyframes ldSpin{to{transform:rotate(360deg)}}
+.ld-bar{width:260px;height:16px;background:rgba(255,255,255,.3);border:3px solid var(--ink);border-radius:50px;margin-top:2rem;overflow:hidden}
+.ld-fill{height:100%;background:var(--lemon);border-radius:50px;animation:ldFill 2.4s ease-out forwards}
+@keyframes ldFill{from{width:0}to{width:100%}}
+.ld-sub{color:rgba(255,255,255,.85);font-size:1.1rem;margin-top:.8rem;font-weight:500}
+
+/* ── MARQUEE ─────────────────────── */
+.marquee-wrap{
+  background:var(--lemon);
+  border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);
+  padding:.6rem 0;overflow:hidden;position:relative;z-index:50;
+}
+.marquee-inner{
+  display:flex;gap:0;white-space:nowrap;
+  animation:marqueeScroll 18s linear infinite;
+}
+.marquee-inner span{
+  font-family:'Lilita One',cursive;
+  font-size:1.1rem;color:var(--ink);
+  padding:0 1.5rem;
+}
+@keyframes marqueeScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── NAV ─────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:var(--white);
+  border-bottom:3px solid var(--ink);
+  padding:0 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  height:64px;
+}
+.nav-logo{
+  font-family:'Lilita One',cursive;
+  font-size:1.5rem;color:var(--ink);
+  text-decoration:none;display:flex;align-items:center;gap:.5rem;
+}
+.logo-dot{
+  width:32px;height:32px;background:var(--hot-pink);
+  border:2px solid var(--ink);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
+}
+.nav-links{display:flex;gap:.5rem;align-items:center;list-style:none}
+.nav-links a{
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  text-decoration:none;padding:.4rem .9rem;
+  border:2px solid transparent;border-radius:50px;
+  transition:all .2s;
+}
+.nav-links a:hover{background:var(--hot-pink);color:var(--white);border-color:var(--ink)}
+.nav-order{
+  background:var(--hot-pink)!important;color:var(--white)!important;
+  border:2px solid var(--ink)!important;
+  box-shadow:var(--shadow-pink)!important;
+  transition:all .2s!important;
+}
+.nav-order:hover{transform:translate(-2px,-2px)!important;box-shadow:6px 6px 0 var(--ink)!important}
+
+/* ── HERO ─────────────────────── */
+#hero{
+  min-height:100vh;
+  padding-top:64px;
+  background:var(--bubblegum);
+  position:relative;overflow:hidden;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  border-bottom:4px solid var(--ink);
+}
+.hero-bg-dots{
+  position:absolute;inset:0;
+  background-image:radial-gradient(var(--ink) 1.5px, transparent 1.5px);
+  background-size:28px 28px;opacity:.08;pointer-events:none;
+}
+.hero-left{
+  padding:4rem 3rem 4rem 5rem;
+  position:relative;z-index:5;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:.4rem;
+  background:var(--lemon);
+  border:2px solid var(--ink);border-radius:50px;
+  padding:.35rem 1rem;
+  font-size:.8rem;font-weight:700;color:var(--ink);
+  margin-bottom:1.5rem;
+  box-shadow:var(--shadow);
+  animation:tagWiggle 2s ease-in-out infinite;
+}
+@keyframes tagWiggle{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(1.5deg)}}
+.hero-h1{
+  font-family:'Lilita One',cursive;
+  font-size:clamp(3rem,6vw,5.5rem);
+  color:var(--ink);
+  line-height:1.05;
+  margin-bottom:1.2rem;
+}
+.hero-h1 .accent{
+  color:var(--white);
+  -webkit-text-stroke:2px var(--ink);
+  display:block;
+}
+.hero-h1 .pop{
+  color:var(--hot-pink);
+  display:inline-block;
+  animation:popBounce .8s ease-in-out infinite alternate;
+}
+@keyframes popBounce{from{transform:translateY(0) rotate(-2deg)}to{transform:translateY(-6px) rotate(2deg)}}
+.hero-sub{
+  font-size:1.15rem;color:var(--ink);font-weight:500;
+  line-height:1.7;max-width:440px;margin-bottom:2rem;opacity:.85;
+}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{
+  font-family:'Fredoka',sans-serif;
+  font-size:1rem;font-weight:600;
+  padding:.75rem 1.8rem;border-radius:50px;
+  border:3px solid var(--ink);cursor:pointer;
+  transition:all .15s;display:inline-flex;align-items:center;gap:.5rem;
+  text-decoration:none;
+}
+.btn:hover{transform:translate(-3px,-3px)}
+.btn-a{background:var(--hot-pink);color:var(--white);box-shadow:var(--shadow-big)}
+.btn-a:hover{box-shadow:8px 8px 0 var(--ink)}
+.btn-b{background:var(--white);color:var(--ink);box-shadow:var(--shadow-big)}
+.btn-b:hover{box-shadow:8px 8px 0 var(--hot-pink);border-color:var(--hot-pink)}
+.hero-stats{
+  display:flex;gap:1.5rem;margin-top:2.5rem;flex-wrap:wrap;
+}
+.stat{
+  background:var(--white);border:2px solid var(--ink);
+  border-radius:16px;padding:.7rem 1.2rem;
+  box-shadow:var(--shadow);text-align:center;
+}
+.stat-n{font-family:'Lilita One',cursive;font-size:1.6rem;color:var(--hot-pink)}
+.stat-l{font-size:.75rem;font-weight:600;color:var(--ink);opacity:.7}
+
+.hero-right{
+  position:relative;height:100%;min-height:500px;
+  display:flex;align-items:center;justify-content:center;
+}
+/* Big mascot */
+.hero-mascot{position:relative;z-index:5}
+.mascot-body{
+  width:300px;height:auto;
+  filter:drop-shadow(6px 6px 0 var(--ink));
+  animation:mascotBob 3s ease-in-out infinite;
+}
+@keyframes mascotBob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-16px) rotate(1deg)}}
+
+/* floating decor */
+.hero-decor{position:absolute;pointer-events:none}
+.hd1{top:10%;left:5%;font-size:3rem;animation:spin1 6s linear infinite}
+.hd2{top:20%;right:8%;font-size:2.5rem;animation:spin1 4s linear infinite reverse}
+.hd3{bottom:25%;left:8%;font-size:2rem;animation:floatY 3s ease-in-out infinite}
+.hd4{bottom:15%;right:5%;font-size:2.5rem;animation:floatY 4s ease-in-out .5s infinite}
+.hd5{top:50%;left:2%;font-size:1.8rem;animation:floatY 2.5s ease-in-out 1s infinite}
+@keyframes spin1{to{transform:rotate(360deg)}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+.speech-bubble{
+  position:absolute;top:0;right:60px;
+  background:var(--white);border:3px solid var(--ink);
+  border-radius:20px 20px 4px 20px;
+  padding:.8rem 1.2rem;
+  font-family:'Yomogi',cursive;font-size:1rem;color:var(--ink);
+  box-shadow:var(--shadow);white-space:nowrap;
+  animation:bubblePop .5s cubic-bezier(.34,1.56,.64,1) both,bubbleFloat 3s ease-in-out 1s infinite;
+}
+@keyframes bubblePop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+@keyframes bubbleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+/* ── MARQUEE strip (after hero) ─── */
+
+/* ── COLLECTIONS ─────────────────────── */
+#collections{
+  padding:5rem 3rem;
+  background:var(--white);
+}
+.sec-header{text-align:center;margin-bottom:3rem}
+.sec-eyebrow{
+  font-family:'Lilita One',cursive;font-size:.85rem;
+  letter-spacing:3px;text-transform:uppercase;
+  color:var(--hot-pink);
+  display:inline-block;margin-bottom:.5rem;
+}
+.sec-title{
+  font-family:'Lilita One',cursive;
+  font-size:clamp(2.2rem,4vw,3.5rem);
+  color:var(--ink);line-height:1.1;
+}
+.sec-title span{color:var(--hot-pink)}
+.sec-sub{font-size:1rem;color:var(--ink);opacity:.6;margin-top:.5rem;font-weight:500}
+
+.products-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+  gap:1.5rem;max-width:1300px;margin:0 auto;
+}
+.pcard{
+  background:var(--white);
+  border:3px solid var(--ink);
+  border-radius:24px;
+  overflow:hidden;
+  box-shadow:var(--shadow-big);
+  transition:all .2s cubic-bezier(.34,1.56,.64,1);
+  position:relative;cursor:pointer;
+}
+.pcard:hover{transform:translate(-4px,-6px);box-shadow:10px 10px 0 var(--ink)}
+.pcard-img{
+  height:220px;position:relative;
+  display:flex;align-items:center;justify-content:center;
+  font-size:5.5rem;
+  border-bottom:3px solid var(--ink);
+  overflow:hidden;
+}
+.pcard:hover .pcard-img .emoji-main{animation:emojiWiggle .4s ease infinite alternate}
+@keyframes emojiWiggle{from{transform:rotate(-5deg) scale(1)}to{transform:rotate(5deg) scale(1.1)}}
+.pcard-badge{
+  position:absolute;top:.75rem;left:.75rem;
+  background:var(--lemon);border:2px solid var(--ink);
+  border-radius:50px;padding:.2rem .7rem;
+  font-size:.7rem;font-weight:700;color:var(--ink);
+  box-shadow:2px 2px 0 var(--ink);
+}
+.pcard-badge.hot{background:var(--hot-pink);color:var(--white)}
+.pcard-badge.sold{background:var(--coral);color:var(--white)}
+.pcard-fav{
+  position:absolute;top:.75rem;right:.75rem;
+  width:36px;height:36px;
+  background:var(--white);border:2px solid var(--ink);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:1rem;cursor:pointer;box-shadow:2px 2px 0 var(--ink);
+  transition:all .2s;
+}
+.pcard-fav:hover{background:var(--hot-pink);transform:scale(1.2)}
+.pcard-body{padding:1.2rem 1.4rem}
+.pcard-name{
+  font-family:'Lilita One',cursive;
+  font-size:1.2rem;color:var(--ink);margin-bottom:.3rem;
+}
+.pcard-desc{font-size:.85rem;color:var(--ink);opacity:.6;line-height:1.6;margin-bottom:1rem;font-weight:500}
+.pcard-foot{display:flex;align-items:center;justify-content:space-between}
+.pcard-price{font-family:'Lilita One',cursive;font-size:1.4rem;color:var(--hot-pink)}
+.pcard-add{
+  background:var(--ink);color:var(--white);
+  border:none;border-radius:50px;
+  padding:.45rem 1.1rem;
+  font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:600;
+  cursor:pointer;transition:all .2s;
+}
+.pcard-add:hover{background:var(--hot-pink);transform:scale(1.08)}
+
+/* ── ABOUT ─────────────────────── */
+#about{
+  background:var(--mint);
+  border-top:4px solid var(--ink);border-bottom:4px solid var(--ink);
+  padding:5rem 3rem;
+}
+.about-grid{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:center;
+}
+.about-img-wrap{position:relative}
+.about-photo{
+  width:100%;max-width:400px;
+  aspect-ratio:3/4;
+  background:var(--hot-pink);
+  border:4px solid var(--ink);
+  border-radius:40px 40px 40% 40%;
+  box-shadow:8px 8px 0 var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-size:9rem;
+  overflow:hidden;
+  position:relative;
+}
+.about-photo::after{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(0,0,0,.04) 10px,rgba(0,0,0,.04) 20px);
+}
+.about-sticker{
+  position:absolute;
+  background:var(--lemon);
+  border:3px solid var(--ink);border-radius:50%;
+  width:90px;height:90px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.5rem;
+  box-shadow:var(--shadow);
+  animation:stickerSpin 8s linear infinite;
+}
+.as1{top:-15px;right:-15px}
+.as2{bottom:30px;left:-20px;animation-direction:reverse;background:var(--bubblegum)}
+@keyframes stickerSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.about-text .sec-title{text-align:left}
+.about-text .sec-sub{text-align:left}
+.about-body{
+  font-size:1rem;color:var(--ink);font-weight:500;
+  line-height:1.8;margin:1.2rem 0;opacity:.85;
+}
+.about-quote{
+  background:var(--white);border:3px solid var(--ink);
+  border-radius:20px;padding:1.2rem 1.5rem;
+  box-shadow:var(--shadow-big);margin:1.5rem 0;
+  font-family:'Yomogi',cursive;font-size:1.1rem;color:var(--ink);
+  position:relative;
+}
+.about-quote::before{
+  content:'"';position:absolute;top:-18px;left:20px;
+  font-family:'Lilita One',cursive;font-size:3rem;color:var(--hot-pink);line-height:1;
+}
+.about-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.chip{
+  background:var(--white);border:2px solid var(--ink);
+  border-radius:50px;padding:.3rem .9rem;
+  font-size:.8rem;font-weight:600;color:var(--ink);
+  box-shadow:2px 2px 0 var(--ink);
+  transition:all .2s;cursor:default;
+}
+.chip:hover{background:var(--hot-pink);color:var(--white);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink)}
+
+/* ── ANIME SHOWCASE ─────────────────────── */
+#anime{
+  background:var(--ink);
+  padding:5rem 3rem;
+  border-top:4px solid var(--hot-pink);
+  position:relative;overflow:hidden;
+}
+.anime-stars{position:absolute;inset:0;pointer-events:none}
+.astar{position:absolute;color:var(--lemon);font-size:1rem;animation:twinkle 2s ease-in-out infinite alternate}
+@keyframes twinkle{from{opacity:.1;transform:scale(.7)}to{opacity:.9;transform:scale(1.2)}}
+#anime .sec-eyebrow{color:var(--bubblegum)}
+#anime .sec-title{color:var(--white)}
+#anime .sec-title span{color:var(--hot-pink)}
+#anime .sec-sub{color:rgba(255,255,255,.5)}
+.anime-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1.5rem;max-width:1100px;margin:3rem auto 0;
+}
+.acard{
+  background:rgba(255,255,255,.05);
+  border:2px solid rgba(255,255,255,.15);
+  border-radius:24px;padding:2rem 1.5rem;
+  transition:all .3s;cursor:pointer;
+  position:relative;overflow:hidden;
+}
+.acard::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--hot-pink),var(--lavender));
+  opacity:0;transition:opacity .3s;
+}
+.acard:hover{border-color:var(--hot-pink);transform:translateY(-8px)}
+.acard:hover::before{opacity:.1}
+.acard-icon{font-size:3.5rem;margin-bottom:1rem;position:relative;z-index:1}
+.acard-title{
+  font-family:'Lilita One',cursive;font-size:1.15rem;
+  color:var(--white);margin-bottom:.5rem;position:relative;z-index:1;
+}
+.acard-desc{font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.7;position:relative;z-index:1;font-weight:500}
+.acard-tag{
+  display:inline-block;margin-top:1rem;
+  background:var(--hot-pink);
+  border-radius:50px;padding:.2rem .7rem;
+  font-size:.7rem;font-weight:700;color:var(--white);
+  position:relative;z-index:1;
+}
+
+/* ── CUSTOM ─────────────────────── */
+#custom{
+  background:var(--lemon);
+  border-top:4px solid var(--ink);border-bottom:4px solid var(--ink);
+  padding:5rem 3rem;text-align:center;
+}
+.custom-inner{max-width:900px;margin:0 auto}
+.steps-row{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;margin:3rem 0;
+}
+.step-card{
+  background:var(--white);
+  border:3px solid var(--ink);border-radius:24px;
+  padding:2rem 1.5rem;
+  box-shadow:var(--shadow-big);
+  transition:all .2s;
+}
+.step-card:hover{transform:translate(-3px,-5px);box-shadow:9px 9px 0 var(--ink)}
+.step-num{
+  width:52px;height:52px;
+  background:var(--hot-pink);border:3px solid var(--ink);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;
+  font-family:'Lilita One',cursive;font-size:1.4rem;color:var(--white);
+  box-shadow:3px 3px 0 var(--ink);
+}
+.step-icon{font-size:2rem;margin-bottom:.8rem}
+.step-title{font-family:'Lilita One',cursive;font-size:1.1rem;color:var(--ink);margin-bottom:.5rem}
+.step-desc{font-size:.88rem;color:var(--ink);opacity:.65;line-height:1.7;font-weight:500}
+
+/* ── TESTIMONIALS ─────────────────────── */
+#testimonials{background:var(--bubblegum);padding:5rem 3rem;border-top:4px solid var(--ink)}
+.tgrid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1.5rem;max-width:1100px;margin:3rem auto 0;
+}
+.tcard{
+  background:var(--white);
+  border:3px solid var(--ink);border-radius:24px;
+  padding:1.8rem;box-shadow:var(--shadow-big);
+  transition:all .2s;
+}
+.tcard:hover{transform:translate(-3px,-5px);box-shadow:9px 9px 0 var(--ink)}
+.t-stars{color:var(--lemon);font-size:1.1rem;margin-bottom:.8rem;-webkit-text-stroke:.5px var(--ink)}
+.t-quote{
+  font-family:'Yomogi',cursive;font-size:2.5rem;
+  color:var(--hot-pink);line-height:1;margin-bottom:.3rem;
+}
+.t-text{font-size:.95rem;color:var(--ink);line-height:1.7;opacity:.8;font-weight:500;margin-bottom:1.2rem;font-style:italic}
+.t-author{display:flex;align-items:center;gap:.8rem}
+.t-av{width:44px;height:44px;border-radius:50%;border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.t-name{font-family:'Lilita One',cursive;font-size:.95rem;color:var(--ink)}
+.t-loc{font-size:.75rem;color:var(--ink);opacity:.55;font-weight:500}
+
+/* ── GALLERY ─────────────────────── */
+#gallery{background:var(--white);padding:5rem 3rem;border-top:4px solid var(--ink)}
+.ggrid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-auto-rows:200px;
+  gap:1rem;max-width:1200px;margin:2rem auto 0;
+}
+.gitem{
+  border:3px solid var(--ink);border-radius:20px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:4rem;cursor:pointer;overflow:hidden;
+  transition:all .25s cubic-bezier(.34,1.56,.64,1);
+  position:relative;
+}
+.gitem:hover{transform:scale(1.05) rotate(-1deg);z-index:5;box-shadow:6px 6px 0 var(--ink)}
+.gi1{grid-column:span 2;grid-row:span 2;font-size:8rem;background:var(--bubblegum)}
+.gi2{background:var(--mint)}
+.gi3{background:var(--lemon)}
+.gi4{background:var(--lavender);color:var(--white)}
+.gi5{background:var(--sky)}
+.gi6{background:var(--coral)}
+.gi7{background:var(--lime)}
+.gitem::after{
+  content:'✦ View';position:absolute;inset:0;
+  background:rgba(26,10,46,.8);color:var(--white);
+  font-family:'Lilita One',cursive;font-size:1.2rem;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .2s;border-radius:17px;
+}
+.gitem:hover::after{opacity:1}
+
+/* ── FAQ ─────────────────────── */
+#faq{background:var(--cream);padding:5rem 3rem;border-top:4px solid var(--ink)}
+.faq-list{max-width:720px;margin:2.5rem auto 0}
+.fi{
+  background:var(--white);border:3px solid var(--ink);
+  border-radius:20px;margin-bottom:1rem;overflow:hidden;
+  box-shadow:var(--shadow);
+  transition:box-shadow .2s;
+}
+.fi.open{box-shadow:6px 6px 0 var(--hot-pink);border-color:var(--hot-pink)}
+.fq{
+  padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;
+  cursor:pointer;font-family:'Lilita One',cursive;font-size:1rem;color:var(--ink);
+  user-select:none;
+}
+.fq-ico{
+  width:28px;height:28px;background:var(--hot-pink);border:2px solid var(--ink);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  color:var(--white);font-size:.9rem;font-weight:900;font-family:'Fredoka',sans-serif;
+  transition:transform .3s;flex-shrink:0;
+}
+.fi.open .fq-ico{transform:rotate(45deg)}
+.fa{
+  max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;
+  font-size:.92rem;color:var(--ink);font-weight:500;line-height:1.7;
+  padding:0 1.5rem;opacity:.75;
+}
+.fi.open .fa{max-height:200px;padding:0 1.5rem 1.2rem}
+
+/* ── CONTACT ─────────────────────── */
+#contact{
+  background:var(--hot-pink);
+  border-top:4px solid var(--ink);
+  padding:5rem 3rem;text-align:center;
+}
+#contact .sec-eyebrow{color:var(--lemon)}
+#contact .sec-title{color:var(--white)}
+#contact .sec-title span{color:var(--lemon)}
+#contact .sec-sub{color:rgba(255,255,255,.8)}
+.clinks{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;margin-top:3rem}
+.ccard{
+  background:var(--white);border:3px solid var(--ink);border-radius:24px;
+  padding:2rem 2rem;box-shadow:var(--shadow-big);
+  cursor:pointer;transition:all .2s;text-decoration:none;
+  display:flex;flex-direction:column;align-items:center;gap:.6rem;min-width:160px;
+}
+.ccard:hover{transform:translate(-4px,-6px);box-shadow:8px 8px 0 var(--ink);background:var(--lemon)}
+.ccard-icon{font-size:2.8rem}
+.ccard-label{font-family:'Lilita One',cursive;font-size:1rem;color:var(--ink)}
+.ccard-handle{font-size:.78rem;color:var(--ink);opacity:.55;font-weight:600}
+
+.big-cta{
+  margin-top:3rem;
+  display:inline-block;
+  font-family:'Lilita One',cursive;font-size:2rem;
+  background:var(--lemon);color:var(--ink);
+  border:4px solid var(--ink);border-radius:50px;
+  padding:1rem 3rem;box-shadow:6px 6px 0 var(--ink);
+  cursor:pointer;transition:all .2s;text-decoration:none;
+}
+.big-cta:hover{transform:translate(-4px,-6px);box-shadow:10px 10px 0 var(--ink)}
+
+/* ── FOOTER ─────────────────────── */
+footer{
+  background:var(--ink);
+  border-top:4px solid var(--hot-pink);
+  padding:2rem;text-align:center;
+}
+.footer-logo{
+  font-family:'Lilita One',cursive;font-size:1.8rem;color:var(--white);margin-bottom:.4rem;
+}
+.footer-logo span{color:var(--hot-pink)}
+.footer-sub{color:rgba(255,255,255,.4);font-size:.82rem;font-weight:500}
+
+/* ── EASTER EGG ─────────────────────── */
+.egg-btn{
+  position:fixed;bottom:1.5rem;right:1.5rem;z-index:999;
+  width:52px;height:52px;background:var(--lemon);
+  border:3px solid var(--ink);border-radius:50%;
+  font-size:1.5rem;cursor:pointer;
+  box-shadow:var(--shadow);transition:all .2s;
+  display:flex;align-items:center;justify-content:center;
+  animation:eggWiggle 4s ease-in-out infinite;
+}
+.egg-btn:hover{transform:scale(1.3) rotate(15deg)}
+@keyframes eggWiggle{0%,90%,100%{transform:rotate(0)}93%{transform:rotate(-8deg)}96%{transform:rotate(8deg)}}
+.egg-overlay{
+  position:fixed;inset:0;z-index:9999;
+  background:rgba(26,10,46,.7);backdrop-filter:blur(8px);
+  display:none;align-items:center;justify-content:center;
+}
+.egg-overlay.show{display:flex}
+.egg-box{
+  background:var(--white);border:4px solid var(--ink);border-radius:30px;
+  padding:3rem;text-align:center;max-width:420px;width:90%;
+  box-shadow:8px 8px 0 var(--ink);
+  animation:eggPop .5s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes eggPop{from{opacity:0;transform:scale(.3) rotate(-10deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+.egg-box h3{font-family:'Lilita One',cursive;font-size:2rem;color:var(--hot-pink);margin-bottom:.5rem}
+.egg-box p{font-size:.95rem;color:var(--ink);opacity:.75;line-height:1.7;font-weight:500}
+.egg-close{
+  margin-top:1.5rem;background:var(--hot-pink);color:var(--white);
+  border:3px solid var(--ink);border-radius:50px;
+  padding:.5rem 2rem;
+  font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;
+  cursor:pointer;box-shadow:var(--shadow);transition:all .2s;
+}
+.egg-close:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+
+/* ── SPARKLES ─────────────────────── */
+.sp{position:fixed;pointer-events:none;z-index:99990;font-size:1.2rem}
+
+/* ── REVEAL ─────────────────────── */
+.reveal{opacity:0;transform:translateY(32px) scale(.97);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:translateY(0) scale(1)}
+
+/* ── SCROLL TICKER ─────────────────────── */
+.ticker{
+  background:var(--hot-pink);
+  border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);
+  padding:.55rem 0;overflow:hidden;
+}
+.ticker-inner{display:flex;animation:ticker 20s linear infinite}
+.ticker-inner span{
+  font-family:'Lilita One',cursive;font-size:1rem;
+  color:var(--white);padding:0 1.5rem;white-space:nowrap;
+}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── HAMBURGER ─────────────────────── */
+.nav-hamburger{
+  display:none;flex-direction:column;gap:5px;
+  background:none;border:none;cursor:pointer;
+  padding:6px;z-index:1001;
+}
+.nav-hamburger span{
+  display:block;width:26px;height:3px;
+  background:var(--ink);border-radius:3px;
+  transition:all .3s ease;transform-origin:center;
+}
+.nav-hamburger.active span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.nav-hamburger.active span:nth-child(2){opacity:0}
+.nav-hamburger.active span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+/* ── MOBILE ─────────────────────── */
+@media(hover:none)and(pointer:coarse){
+  #cur,#cur2{display:none!important}
+  body{cursor:auto}
+  a,button,.pcard,.acard,.gitem,.ccard,.chip,.step-card,.tcard{-webkit-tap-highlight-color:transparent}
+}
+
+@media(max-width:768px){
+  nav{padding:0 1rem}
+  .nav-hamburger{display:flex}
+  .nav-links{
+    position:fixed;top:64px;left:0;right:0;
+    background:var(--white);border-bottom:3px solid var(--ink);
+    flex-direction:column;padding:1rem;gap:.3rem;
+    transform:translateY(-110%);opacity:0;
+    transition:transform .35s ease,opacity .35s ease;
+    pointer-events:none;
+  }
+  .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
+  .nav-links a{display:block;padding:.7rem .9rem;font-size:1rem}
+  #hero{grid-template-columns:1fr;padding:5rem 1.5rem 3rem}
+  .hero-left{padding:0}
+  .hero-right{min-height:300px}
+  .mascot-body{width:200px}
+  .speech-bubble{font-size:.85rem;padding:.5rem .8rem;right:10px;white-space:normal;max-width:180px}
+  .about-grid,.steps-row{grid-template-columns:1fr}
+  .ggrid{grid-template-columns:repeat(2,1fr)}
+  .gi1{grid-column:span 2}
+  .hero-h1{font-size:2.8rem}
+  section{padding:4rem 1.5rem}
+  #collections,#about,#anime,#custom,#testimonials,#gallery,#faq,#contact{padding:4rem 1.5rem}
+}
+
+@media(max-width:480px){
+  #loader .ld-title{font-size:2.4rem;text-align:center;padding:0 1rem}
+  #loader .ld-yarn{font-size:3.5rem}
+  #loader .ld-sub{font-size:.9rem;text-align:center;padding:0 1rem}
+  #loader .ld-bar{width:200px}
+  .hero-h1{font-size:2.2rem}
+  .hero-sub{font-size:1rem}
+  .hero-stats{gap:1rem}
+  .stat{padding:.5rem .9rem}
+  .stat-n{font-size:1.3rem}
+  .mascot-body{width:160px}
+  .hero-right{min-height:220px}
+  .products-grid{grid-template-columns:1fr}
+  .pcard-img{height:180px;font-size:4rem}
+  .ggrid{grid-template-columns:1fr;grid-auto-rows:170px}
+  .gi1,.gi4,.gi6{grid-column:span 1;grid-row:span 1;font-size:4rem}
+  .anime-grid{grid-template-columns:1fr}
+  .step-card{padding:1.5rem}
+  .ccard{min-width:140px;padding:1.5rem 1.2rem}
+  .big-cta{font-size:1.4rem;padding:.8rem 2rem}
+  .ticker-inner span{font-size:.85rem;padding:0 1rem}
+  .marquee-inner span{font-size:.9rem;padding:0 1rem}
+  .egg-btn{width:44px;height:44px;font-size:1.2rem;bottom:1rem;right:1rem}
+}
+
+@media(max-width:360px){
+  #loader .ld-title{font-size:1.8rem}
+  #loader .ld-bar{width:170px}
+  .hero-h1{font-size:1.8rem}
+  .hero-tag{font-size:.7rem;padding:.25rem .7rem}
+  .btn{font-size:.9rem;padding:.6rem 1.3rem}
+  .nav-logo{font-size:1.2rem}
+  .logo-dot{width:28px;height:28px;font-size:.85rem}
+  .speech-bubble{font-size:.75rem;max-width:140px;padding:.4rem .6rem}
+  .about-photo{font-size:6rem}
+  .about-sticker{width:65px;height:65px;font-size:1.8rem}
+  .egg-box{padding:2rem}
+  .egg-box h3{font-size:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cur"></div>
+<div id="cur2"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="ld-yarn">🧶</div>
+  <div class="ld-title">Da Silva Crochet</div>
+  <div class="ld-sub">✿ Stitching the magic together ✿</div>
+  <div class="ld-bar"><div class="ld-fill"></div></div>
+</div>
+
+<!-- EASTER EGG -->
+<button class="egg-btn" id="eggBtn">🎀</button>
+<div class="egg-overlay" id="eggOverlay">
+  <div class="egg-box">
+    <div style="font-size:4rem;margin-bottom:.5rem">🧶✨🌸</div>
+    <h3>You found a secret!</h3>
+    <p>Every Da Silva piece is made while listening to Studio Ghibli soundtracks with the window open. That's the real secret ingredient — music, sunlight, and an unhealthy amount of yarn. 💕</p>
+    <p style="margin-top:1rem;font-family:'Yomogi',cursive;font-size:1.1rem;color:var(--hot-pink)">"Stitch by stitch, world by world."</p>
+    <button class="egg-close" id="eggClose">Aww, close 🌸</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">
+    <div class="logo-dot">🧶</div>
+    Da Silva Crochet
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#collections">Shop</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#anime">Anime</a></li>
+    <li><a href="#custom">Custom</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact" class="nav-order">Order Now ✿</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-dots"></div>
+  <div class="hero-left">
+    <div class="hero-tag">✿ Handmade in Nigeria · Ships Worldwide ✿</div>
+    <h1 class="hero-h1">
+      Handmade<br>
+      <span class="accent">Crochet Meets</span>
+      <span class="pop">Anime Magic!</span>
+    </h1>
+    <p class="hero-sub">Every stitch is a love letter to handmade culture, kawaii aesthetics, and the cozy magic of anime. Made with soul, shipped with joy. 🌸</p>
+    <div class="hero-btns">
+      <a href="#collections" class="btn btn-a">✿ Shop Now</a>
+      <a href="#custom" class="btn btn-b">🎀 Custom Order</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-n">500+</div><div class="stat-l">Happy Customers</div></div>
+      <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Handmade</div></div>
+      <div class="stat"><div class="stat-n">3+</div><div class="stat-l">Years of Love</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <!-- Floating decor -->
+    <div class="hero-decor hd1">🌸</div>
+    <div class="hero-decor hd2">⭐</div>
+    <div class="hero-decor hd3">🎀</div>
+    <div class="hero-decor hd4">💫</div>
+    <div class="hero-decor hd5">✿</div>
+    <div class="hero-mascot">
+      <div class="speech-bubble">Konnichiwa! Let's crochet! 🧶</div>
+      <!-- Big kawaii mascot SVG -->
+      <svg class="mascot-body" viewBox="0 0 280 380" xmlns="http://www.w3.org/2000/svg">
+        <!-- Shadow -->
+        <ellipse cx="140" cy="370" rx="70" ry="10" fill="rgba(0,0,0,.15)"/>
+        <!-- Legs -->
+        <rect x="95" y="295" width="35" height="70" rx="17" fill="#FFEEE8"/>
+        <rect x="150" y="295" width="35" height="70" rx="17" fill="#FFEEE8"/>
+        <!-- Shoes -->
+        <ellipse cx="112" cy="365" rx="22" ry="12" fill="#FF4FA3"/>
+        <ellipse cx="167" cy="365" rx="22" ry="12" fill="#FF4FA3"/>
+        <ellipse cx="112" cy="363" rx="22" ry="12" fill="#FF6BBF"/>
+        <ellipse cx="167" cy="363" rx="22" ry="12" fill="#FF6BBF"/>
+        <!-- Dress/Body -->
+        <path d="M60 200 Q55 310 90 330 Q140 345 190 330 Q225 310 220 200Z" fill="#FF85C8"/>
+        <!-- Dress stripes/pattern -->
+        <path d="M60 200 Q55 310 90 330 Q140 345 190 330 Q225 310 220 200Z" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5" stroke-dasharray="8,6"/>
+        <path d="M75 240 Q140 255 205 240" stroke="rgba(255,255,255,.5)" stroke-width="1.5" fill="none"/>
+        <path d="M68 270 Q140 285 212 270" stroke="rgba(255,255,255,.4)" stroke-width="1.5" fill="none"/>
+        <path d="M65 300 Q140 315 215 300" stroke="rgba(255,255,255,.35)" stroke-width="1.5" fill="none"/>
+        <!-- Dress collar -->
+        <path d="M105 200 Q140 215 175 200 Q160 230 140 225 Q120 230 105 200Z" fill="white" opacity=".6"/>
+        <!-- Arms -->
+        <path d="M65 210 Q30 225 28 255 Q28 275 50 280 Q62 282 72 265" fill="#FFEEE8"/>
+        <path d="M215 210 Q250 225 252 255 Q252 275 230 280 Q218 282 208 265" fill="#FFEEE8"/>
+        <!-- Yarn ball in left hand -->
+        <circle cx="38" cy="285" r="22" fill="#C084FC" stroke="#1A0A2E" stroke-width="2.5"/>
+        <circle cx="38" cy="285" r="15" fill="#A855F7" stroke="none"/>
+        <path d="M22 278 Q38 270 54 278" stroke="#E8D5F5" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M20 285 Q38 295 56 285" stroke="#E8D5F5" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <!-- Crochet hook in right hand -->
+        <rect x="240" y="260" width="6" height="50" rx="3" fill="#FFE94F" stroke="#1A0A2E" stroke-width="1.5"/>
+        <path d="M243 263 Q255 260 253 272" stroke="#1A0A2E" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- Neck -->
+        <rect x="122" y="178" width="36" height="28" rx="14" fill="#FFEEE8"/>
+        <!-- Head -->
+        <ellipse cx="140" cy="135" rx="78" ry="80" fill="#FFEEE8"/>
+        <!-- Blush -->
+        <ellipse cx="95" cy="155" rx="20" ry="12" fill="#FF85C8" opacity=".45"/>
+        <ellipse cx="185" cy="155" rx="20" ry="12" fill="#FF85C8" opacity=".45"/>
+        <!-- Blush sparkles -->
+        <text x="80" y="150" font-size="10" opacity=".5">✦</text>
+        <text x="177" y="150" font-size="10" opacity=".5">✦</text>
+        <!-- Eyebrows -->
+        <path d="M108 115 Q118 109 128 113" stroke="#5C3A1E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M152 113 Q162 109 172 115" stroke="#5C3A1E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <!-- Eyes whites -->
+        <ellipse cx="118" cy="132" rx="16" ry="18" fill="white"/>
+        <ellipse cx="162" cy="132" rx="16" ry="18" fill="white"/>
+        <!-- Iris - big anime eyes -->
+        <ellipse cx="118" cy="134" rx="11" ry="13" fill="#4FA3FF"/>
+        <ellipse cx="162" cy="134" rx="11" ry="13" fill="#4FA3FF"/>
+        <!-- Pupil -->
+        <ellipse cx="118" cy="135" rx="7" ry="9" fill="#1A0A2E"/>
+        <ellipse cx="162" cy="135" rx="7" ry="9" fill="#1A0A2E"/>
+        <!-- Eye shine large -->
+        <ellipse cx="122" cy="128" rx="5" ry="6" fill="white"/>
+        <ellipse cx="166" cy="128" rx="5" ry="6" fill="white"/>
+        <!-- Eye shine small -->
+        <circle cx="113" cy="138" r="2.5" fill="white"/>
+        <circle cx="157" cy="138" r="2.5" fill="white"/>
+        <!-- Eyelashes -->
+        <path d="M102 120 Q106 113 112 116" stroke="#1A0A2E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M134 116 Q138 109 143 113" stroke="#1A0A2E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M148 113 Q152 106 157 110" stroke="#1A0A2E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M174 116 Q178 109 183 114" stroke="#1A0A2E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <!-- Nose -->
+        <ellipse cx="140" cy="150" rx="5" ry="3.5" fill="#F4A7B9" opacity=".7"/>
+        <!-- Mouth happy -->
+        <path d="M122 166 Q140 180 158 166" stroke="#E8507A" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- Teeth lil peek -->
+        <path d="M128 170 Q140 176 152 170 Q152 178 128 178Z" fill="white" opacity=".6"/>
+        <!-- Hair base -->
+        <ellipse cx="140" cy="80" rx="78" ry="60" fill="#5C3A1E"/>
+        <!-- Hair front sweep -->
+        <path d="M62 110 Q55 80 70 55 Q100 10 140 8 Q180 10 210 55 Q225 80 218 110" fill="#5C3A1E"/>
+        <!-- Hair bangs -->
+        <path d="M90 90 Q95 115 105 118" fill="#4A2C15"/>
+        <path d="M78 100 Q80 125 92 128" fill="#4A2C15"/>
+        <!-- Side hair strands -->
+        <path d="M62 120 Q45 150 55 185 Q65 200 75 195" fill="#5C3A1E"/>
+        <path d="M218 120 Q235 150 225 185 Q215 200 205 195" fill="#5C3A1E"/>
+        <!-- Hair highlight -->
+        <path d="M105 30 Q140 18 170 32" stroke="rgba(255,255,255,.25)" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <!-- Hair accessory - big pink bow -->
+        <path d="M90 40 Q110 25 130 40 Q110 55 90 40Z" fill="#FF4FA3" stroke="#1A0A2E" stroke-width="1.5"/>
+        <path d="M150 40 Q170 25 190 40 Q170 55 150 40Z" fill="#FF4FA3" stroke="#1A0A2E" stroke-width="1.5"/>
+        <circle cx="140" cy="40" r="10" fill="#FF85C8" stroke="#1A0A2E" stroke-width="1.5"/>
+        <!-- Stars around head -->
+        <text x="28" y="90" font-size="18" fill="#FFE94F" opacity=".8">★</text>
+        <text x="222" y="80" font-size="14" fill="#FFE94F" opacity=".7">✦</text>
+        <text x="35" y="155" font-size="12" fill="#FF85C8" opacity=".6">✿</text>
+        <text x="225" y="160" font-size="12" fill="#FF85C8" opacity=".6">✿</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- HOT PINK MARQUEE -->
+<div class="ticker">
+  <div class="ticker-inner" id="tick1">
+    <span>🧶 Handmade With Love</span><span>✿ Anime Inspired</span><span>🌸 Ships Worldwide</span><span>⭐ 500+ Happy Customers</span><span>🎀 Custom Orders Open</span><span>💕 Made in Nigeria</span><span>✦ Premium Yarn Only</span><span>🌙 Kawaii & Unique</span>
+    <span>🧶 Handmade With Love</span><span>✿ Anime Inspired</span><span>🌸 Ships Worldwide</span><span>⭐ 500+ Happy Customers</span><span>🎀 Custom Orders Open</span><span>💕 Made in Nigeria</span><span>✦ Premium Yarn Only</span><span>🌙 Kawaii & Unique</span>
+  </div>
+</div>
+
+<!-- COLLECTIONS -->
+<section id="collections">
+  <div class="sec-header reveal">
+    <div class="sec-eyebrow">✿ Featured Collection ✿</div>
+    <h2 class="sec-title">Shop The <span>Magic</span></h2>
+    <p class="sec-sub">Every piece is one-of-a-kind and made with your vibe in mind.</p>
+  </div>
+  <div class="products-grid">
+    <div class="pcard reveal">
+      <div class="pcard-img" style="background:linear-gradient(135deg,#FFD6E0,#FF85C8)">
+        <div class="emoji-main">🐰</div>
+        <div class="pcard-badge hot">🔥 New Drop</div>
+        <div class="pcard-fav" onclick="favToggle(this,event)">🤍</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Sakura Bunny Amigurumi</div>
+        <div class="pcard-desc">Soft cotton bunny with cherry blossom accessories. Your new desk bestie.</div>
+        <div class="pcard-foot">
+          <div class="pcard-price">₦8,500</div>
+          <button class="pcard-add" onclick="addCart(this,event)">+ Add</button>
+        </div>
+      </div>
+    </div>
+    <div class="pcard reveal">
+      <div class="pcard-img" style="background:linear-gradient(135deg,#E8D5F5,#C084FC)">
+        <div class="emoji-main">👜</div>
+        <div class="pcard-badge">⭐ Bestseller</div>
+        <div class="pcard-fav" onclick="favToggle(this,event)">🤍</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Moonlit Tote Bag</div>
+        <div class="pcard-desc">Open-weave tote with crescent moon motif. Campus-ready, anime-approved.</div>
+        <div class="pcard-foot">
+          <div class="pcard-price">₦12,000</div>
+          <button class="pcard-add" onclick="addCart(this,event)">+ Add</button>
+        </div>
+      </div>
+    </div>
+    <div class="pcard reveal">
+      <div class="pcard-img" style="background:linear-gradient(135deg,#FFE94F,#FF9F1C)">
+        <div class="emoji-main">🎀</div>
+        <div class="pcard-badge">💛 Fan Fav</div>
+        <div class="pcard-fav" onclick="favToggle(this,event)">🤍</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Kawaii Bow Headband</div>
+        <div class="pcard-desc">Chunky crochet headband with big bow. Because accessories are personality.</div>
+        <div class="pcard-foot">
+          <div class="pcard-price">₦4,200</div>
+          <button class="pcard-add" onclick="addCart(this,event)">+ Add</button>
+        </div>
+      </div>
+    </div>
+    <div class="pcard reveal">
+      <div class="pcard-img" style="background:linear-gradient(135deg,#4FFFD4,#4FB8FF)">
+        <div class="emoji-main">🌊</div>
+        <div class="pcard-badge hot">🎯 Limited</div>
+        <div class="pcard-fav" onclick="favToggle(this,event)">🤍</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Ocean Dream Crop Top</div>
+        <div class="pcard-desc">Open-weave crop with sea-glass blue yarn. Summer main character energy.</div>
+        <div class="pcard-foot">
+          <div class="pcard-price">₦18,000</div>
+          <button class="pcard-add" onclick="addCart(this,event)">+ Add</button>
+        </div>
+      </div>
+    </div>
+    <div class="pcard reveal">
+      <div class="pcard-img" style="background:linear-gradient(135deg,#A3FF4F,#4FFFD4)">
+        <div class="emoji-main">🍃</div>
+        <div class="pcard-badge">🌿 Cozy Pick</div>
+        <div class="pcard-fav" onclick="favToggle(this,event)">🤍</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Forest Spirit Earring Set</div>
+        <div class="pcard-desc">Tiny crocheted leaves + berries. Straight from a Ghibli forest, straight to you.</div>
+        <div class="pcard-foot">
+          <div class="pcard-price">₦6,800</div>
+          <button class="pcard-add" onclick="addCart(this,event)">+ Add</button>
+        </div>
+      </div>
+    </div>
+    <div class="pcard reveal">
+      <div class="pcard-img" style="background:linear-gradient(135deg,#FF6B6B,#FF4FA3)">
+        <div class="emoji-main">⭐</div>
+        <div class="pcard-badge">🎁 Gift Pick</div>
+        <div class="pcard-fav" onclick="favToggle(this,event)">🤍</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Star Keeper Mini Pouch</div>
+        <div class="pcard-desc">Tiny crochet pouch with star motif. For jewellery, coins, AirPods, or good vibes.</div>
+        <div class="pcard-foot">
+          <div class="pcard-price">₦3,500</div>
+          <button class="pcard-add" onclick="addCart(this,event)">+ Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- YELLOW MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner" id="marq">
+    <span>✿ Crochet is Care</span><span>🧶 Every Stitch Counts</span><span>🌸 Made With Magic</span><span>⭐ Anime Vibes Only</span><span>🎀 Your Vision, My Yarn</span><span>💕 Kawaii Forever</span><span>✦ One of a Kind</span><span>🌙 Dream in Stitches</span>
+    <span>✿ Crochet is Care</span><span>🧶 Every Stitch Counts</span><span>🌸 Made With Magic</span><span>⭐ Anime Vibes Only</span><span>🎀 Your Vision, My Yarn</span><span>💕 Kawaii Forever</span><span>✦ One of a Kind</span><span>🌙 Dream in Stitches</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img-wrap reveal">
+      <div class="about-photo">🧶
+        <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 12px,rgba(255,255,255,.1) 12px,rgba(255,255,255,.1) 24px);border-radius:inherit"></div>
+      </div>
+      <div class="about-sticker as1">🌸</div>
+      <div class="about-sticker as2">⭐</div>
+    </div>
+    <div class="about-text">
+      <div class="sec-eyebrow reveal">✿ The Creator ✿</div>
+      <h2 class="sec-title reveal">Soft Stitches.<br><span>Bold Personality.</span></h2>
+      <p class="about-body reveal">Hi! I'm the heart and hands behind Da Silva Crochet. I started crocheting as a way to bring the warmth, colour, and personality of anime into real, wearable, holdable things you can love every day.</p>
+      <div class="about-quote reveal">Every piece I make plays Studio Ghibli music in its DNA. You can't see it, but you can feel it. 🎵</div>
+      <p class="about-body reveal">Based in Nigeria. Creating for dreamers, anime lovers, and anyone who believes that handmade is the most powerful kind of magic.</p>
+      <div class="about-chips reveal">
+        <span class="chip">🌸 Anime Lover</span>
+        <span class="chip">🧶 Yarn Addict</span>
+        <span class="chip">🎵 Ghibli Fan</span>
+        <span class="chip">💕 Made in Nigeria</span>
+        <span class="chip">✨ Custom Wizard</span>
+        <span class="chip">🌙 Night Crocheter</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANIME SHOWCASE -->
+<section id="anime">
+  <div class="anime-stars" id="animeStars"></div>
+  <div style="max-width:1100px;margin:0 auto;text-align:center;position:relative;z-index:2">
+    <div class="sec-eyebrow reveal">✿ Anime Inspired ✿</div>
+    <h2 class="sec-title reveal">Where Yarn Meets <span>Anime Soul</span></h2>
+    <p class="sec-sub reveal">Each collection draws from the magic of anime — the warmth, the wonder, the unforgettable aesthetic.</p>
+    <div class="anime-grid">
+      <div class="acard reveal">
+        <div class="acard-icon">🌸</div>
+        <div class="acard-title">Ghibli Warmth</div>
+        <div class="acard-desc">Soft earthy tones inspired by Totoro's forest, Kiki's kitchen, and Howl's fireplace.</div>
+        <span class="acard-tag">Cozy Collection</span>
+      </div>
+      <div class="acard reveal">
+        <div class="acard-icon">🌙</div>
+        <div class="acard-title">Sailor Moon Magic</div>
+        <div class="acard-desc">Iridescent lavenders, deep navies, and that transformation-sequence shimmer.</div>
+        <span class="acard-tag">Magical Girl</span>
+      </div>
+      <div class="acard reveal">
+        <div class="acard-icon">🍜</div>
+        <div class="acard-title">Slice of Life</div>
+        <div class="acard-desc">Everyday kawaii — the pieces you'd spot in an anime café on a rainy Tuesday.</div>
+        <span class="acard-tag">Everyday Kawaii</span>
+      </div>
+      <div class="acard reveal">
+        <div class="acard-icon">⚡</div>
+        <div class="acard-title">Shonen Energy</div>
+        <div class="acard-desc">Bold colours, strong silhouettes, and the kind of energy that makes you want to run at the screen.</div>
+        <span class="acard-tag">Power Arc</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOM ORDER -->
+<section id="custom">
+  <div class="custom-inner">
+    <div class="sec-eyebrow reveal">✿ Make It Yours ✿</div>
+    <h2 class="sec-title reveal">Your Dream Piece.<br><span>My Yarn. Let's Go.</span></h2>
+    <p class="sec-sub reveal" style="margin:.5rem auto;max-width:500px">Have a wild idea? A favourite character you want crocheted? A colour that screams YOUR name? Custom orders are my favourite thing in the world.</p>
+    <div class="steps-row">
+      <div class="step-card reveal">
+        <div class="step-num">01</div>
+        <div class="step-icon">💬</div>
+        <div class="step-title">Share Your Vision</div>
+        <div class="step-desc">DM me on Instagram or WhatsApp with your idea, reference images, colours, and any anime inspo.</div>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">02</div>
+        <div class="step-icon">🎨</div>
+        <div class="step-title">We Design Together</div>
+        <div class="step-desc">I'll send yarn swatches and a preview sketch. We tweak until it's perfect — no compromises.</div>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">03</div>
+        <div class="step-icon">📦</div>
+        <div class="step-title">Magic Delivered</div>
+        <div class="step-desc">Your piece arrives carefully packaged with a handwritten note. Unboxing guaranteed to make you smile.</div>
+      </div>
+    </div>
+    <a href="#contact" class="btn btn-a reveal" style="font-size:1.1rem;padding:.9rem 2.5rem">🧶 Start My Custom Order</a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div style="max-width:1100px;margin:0 auto;text-align:center">
+    <div class="sec-eyebrow reveal">✿ Love Notes ✿</div>
+    <h2 class="sec-title reveal">What People <span>Say</span></h2>
+    <div class="tgrid">
+      <div class="tcard reveal">
+        <div class="t-stars">★★★★★</div>
+        <div class="t-quote">"</div>
+        <div class="t-text">I ordered the Sakura Amigurumi as a gift and literally cried when I opened it. It looks EXACTLY like something from an anime. I've ordered three more since then and I'm not stopping.</div>
+        <div class="t-author">
+          <div class="t-av" style="background:#FFD6E0">🌸</div>
+          <div><div class="t-name">Adaeze Okonkwo</div><div class="t-loc">Lagos, Nigeria</div></div>
+        </div>
+      </div>
+      <div class="tcard reveal">
+        <div class="t-stars">★★★★★</div>
+        <div class="t-quote">"</div>
+        <div class="t-text">The Moonlit Tote is my most-complimented item ever. People refuse to believe it's handmade. The stitching, the quality — it honestly doesn't feel real.</div>
+        <div class="t-author">
+          <div class="t-av" style="background:#E8D5F5">🌙</div>
+          <div><div class="t-name">Chiamaka Eze</div><div class="t-loc">Abuja, Nigeria</div></div>
+        </div>
+      </div>
+      <div class="tcard reveal">
+        <div class="t-stars">★★★★★</div>
+        <div class="t-quote">"</div>
+        <div class="t-text">She made me a custom piece based on my fav anime character and I actually teared up. She got every detail right. Best purchase I've ever made, no question.</div>
+        <div class="t-author">
+          <div class="t-av" style="background:#4FFFD4">⚡</div>
+          <div><div class="t-name">Kemi Adeyemi</div><div class="t-loc">Port Harcourt, Nigeria</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div style="max-width:1200px;margin:0 auto;text-align:center">
+    <div class="sec-eyebrow reveal">✿ The Gallery ✿</div>
+    <h2 class="sec-title reveal">A World Built From <span>Yarn</span></h2>
+    <div class="ggrid">
+      <div class="gitem gi1 reveal">🧶</div>
+      <div class="gitem gi2 reveal">🐰</div>
+      <div class="gitem gi3 reveal">🌸</div>
+      <div class="gitem gi4 reveal">🌙</div>
+      <div class="gitem gi5 reveal">👜</div>
+      <div class="gitem gi6 reveal">🎀</div>
+      <div class="gitem gi7 reveal">⭐</div>
+    </div>
+    <p style="margin-top:1.5rem;font-size:.9rem;opacity:.6;font-weight:600" class="reveal">
+      Follow <strong style="color:var(--hot-pink)">@dasilva.crochet</strong> on Instagram for daily drops ✿
+    </p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div style="max-width:800px;margin:0 auto;text-align:center">
+    <div class="sec-eyebrow reveal">✿ Questions ✿</div>
+    <h2 class="sec-title reveal">Got Questions? <span>We've Got Answers.</span></h2>
+    <div class="faq-list">
+      <div class="fi reveal">
+        <div class="fq">How long do custom orders take? <div class="fq-ico">+</div></div>
+        <div class="fa">5–14 days depending on complexity. Amigurumi take about a week; bags and garments up to 2 weeks. I'll always give you a clear timeline before we begin so there are zero surprises.</div>
+      </div>
+      <div class="fi reveal">
+        <div class="fq">Do you ship internationally? <div class="fq-ico">+</div></div>
+        <div class="fa">Yes! Domestic (Nigeria) delivery takes 2–5 business days. International varies — usually 7–21 days with tracking provided. Shipping costs are calculated at checkout or discussed via DM.</div>
+      </div>
+      <div class="fi reveal">
+        <div class="fq">Can I request a specific anime character or theme? <div class="fq-ico">+</div></div>
+        <div class="fa">That's my absolute favourite kind of order. Send me a reference image and your favourite character or colour palette and we'll figure it out together. The more detail, the better!</div>
+      </div>
+      <div class="fi reveal">
+        <div class="fq">What yarn do you use — is it safe for kids? <div class="fq-ico">+</div></div>
+        <div class="fa">Premium soft cotton and hypoallergenic acrylic from trusted suppliers. For kids' amigurumi, I use non-toxic stuffing and properly secured safety eyes (suitable for ages 3+). I'll always flag any concerns.</div>
+      </div>
+      <div class="fi reveal">
+        <div class="fq">How do I care for my crochet pieces? <div class="fq-ico">+</div></div>
+        <div class="fa">Hand wash gently in cold water with mild soap. Lay flat to dry. Avoid machine washing unless specifically told it's safe. Properly cared-for pieces will last years and honestly just get better over time.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div style="max-width:900px;margin:0 auto">
+    <div class="sec-eyebrow reveal">✿ Let's Connect ✿</div>
+    <h2 class="sec-title reveal">Ready to Order? <span>Let's Talk.</span></h2>
+    <p class="sec-sub reveal" style="color:rgba(255,255,255,.85)">DM, WhatsApp, email — pick your weapon. I reply fast and I don't bite. 💕</p>
+    <div class="clinks">
+      <a href="#" class="ccard reveal">
+        <div class="ccard-icon">📸</div>
+        <div class="ccard-label">Instagram</div>
+        <div class="ccard-handle">@dasilva.crochet</div>
+      </a>
+      <a href="#" class="ccard reveal">
+        <div class="ccard-icon">💬</div>
+        <div class="ccard-label">WhatsApp</div>
+        <div class="ccard-handle">Chat & Order</div>
+      </a>
+      <a href="#" class="ccard reveal">
+        <div class="ccard-icon">📧</div>
+        <div class="ccard-label">Email</div>
+        <div class="ccard-handle">hello@dasilva.co</div>
+      </a>
+      <a href="#" class="ccard reveal">
+        <div class="ccard-icon">🛍️</div>
+        <div class="ccard-label">Etsy</div>
+        <div class="ccard-handle">Da Silva Crochet</div>
+      </a>
+    </div>
+    <div style="margin-top:3rem" class="reveal">
+      <a href="#" class="big-cta">🧶 Place Your Order Now!</a>
+    </div>
+    <p style="margin-top:2.5rem;font-family:'Yomogi',cursive;font-size:1.4rem;color:rgba(255,255,255,.7)" class="reveal">"Stitch by stitch, dream by dream." ✿</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Da Silva <span>Crochet</span> 🧶</div>
+  <div class="footer-sub">Handmade in Nigeria · Anime-Inspired · Shipped With Love · © 2025</div>
+</footer>
+
+<script>
+// CURSOR
+const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
+let mx=0,my=0,cx=0,cy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+setInterval(()=>{cx+=(mx-cx)*.14;cy+=(my-cy)*.14;cur2.style.left=cx+'px';cur2.style.top=cy+'px'},16);
+
+// LOADER
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('out'),2600));
+
+// ANIME STARS
+const as=document.getElementById('animeStars');
+const chars=['★','✦','✿','⭐','✸','✺'];
+for(let i=0;i<40;i++){
+  const d=document.createElement('div');d.className='astar';
+  d.textContent=chars[Math.floor(Math.random()*chars.length)];
+  d.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*3}s;animation-duration:${1.5+Math.random()*2.5}s;font-size:${0.6+Math.random()*.8}rem`;
+  as.appendChild(d);
+}
+
+// REVEAL
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('in'),i*70)});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// FAQ
+document.querySelectorAll('.fq').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const fi=q.parentElement;
+    const open=fi.classList.contains('open');
+    document.querySelectorAll('.fi.open').forEach(f=>f.classList.remove('open'));
+    if(!open)fi.classList.add('open');
+  });
+});
+
+// SPARKLES
+const spEmojis=['✿','🌸','⭐','✦','💕','🎀','✨','🧶'];
+function spawnSparkles(x,y,n=8){
+  for(let i=0;i<n;i++){
+    const s=document.createElement('div');s.className='sp';
+    s.textContent=spEmojis[Math.floor(Math.random()*spEmojis.length)];
+    const angle=Math.random()*Math.PI*2,dist=40+Math.random()*70;
+    s.style.cssText=`left:${x}px;top:${y}px;font-size:${.8+Math.random()*.8}rem;pointer-events:none;`;
+    s.animate([
+      {opacity:1,transform:`translate(-50%,-50%) translate(0,0) scale(1) rotate(0deg)`},
+      {opacity:0,transform:`translate(-50%,-50%) translate(${Math.cos(angle)*dist}px,${Math.sin(angle)*dist}px) scale(0) rotate(${Math.random()*360}deg)`}
+    ],{duration:700+Math.random()*400,easing:'ease-out'}).onfinish=()=>s.remove();
+    document.body.appendChild(s);
+  }
+}
+
+// FAV TOGGLE
+function favToggle(btn,e){
+  e.stopPropagation();
+  btn.textContent=btn.textContent==='🤍'?'❤️':'🤍';
+  spawnSparkles(e.clientX,e.clientY,6);
+}
+
+// ADD TO CART
+function addCart(btn,e){
+  e.stopPropagation();
+  const orig=btn.textContent;
+  btn.textContent='Added! 🌸';
+  btn.style.background='var(--hot-pink)';
+  spawnSparkles(e.clientX,e.clientY,10);
+  setTimeout(()=>{btn.textContent=orig;btn.style.background=''},2000);
+}
+
+// EASTER EGG
+document.getElementById('eggBtn').addEventListener('click',e=>{
+  document.getElementById('eggOverlay').classList.add('show');
+  spawnSparkles(e.clientX,e.clientY,12);
+});
+document.getElementById('eggClose').addEventListener('click',()=>document.getElementById('eggOverlay').classList.remove('show'));
+document.getElementById('eggOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('eggOverlay'))document.getElementById('eggOverlay').classList.remove('show')});
+
+// GALLERY SPARKLES
+document.querySelectorAll('.gitem').forEach(g=>{
+  g.addEventListener('click',e=>spawnSparkles(e.clientX,e.clientY,8));
+});
+
+// CONTACT CARDS
+document.querySelectorAll('.ccard').forEach(c=>{
+  c.addEventListener('click',e=>{e.preventDefault();spawnSparkles(e.clientX,e.clientY,8)});
+});
+
+// CHIP SPARKLES
+document.querySelectorAll('.chip').forEach(c=>{
+  c.addEventListener('click',e=>spawnSparkles(e.clientX,e.clientY,5));
+});
+
+// NAV SHADOW ON SCROLL
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').style.boxShadow=window.scrollY>40?'0 4px 0 var(--ink)':'none';
+});
+
+// MOBILE HAMBURGER
+const ham=document.getElementById('navHamburger'),navL=document.getElementById('navLinks');
+ham.addEventListener('click',()=>{
+  ham.classList.toggle('active');navL.classList.toggle('open');
+});
+navL.querySelectorAll('a').forEach(a=>{
+  a.addEventListener('click',()=>{
+    ham.classList.remove('active');navL.classList.remove('open');
+  });
+});
+
+// CURSOR HOVER ENLARGE
+document.querySelectorAll('a,button,.pcard,.acard,.gitem,.ccard,.chip,.step-card,.tcard').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2.5)';cur.style.background='var(--lemon)'});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';cur.style.background='var(--hot-pink)'});
+});
+</script>
+</body>
+</html>
