@@ -217,13 +217,27 @@ nav{
 @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 
 .speech-bubble{
-  position:absolute;top:0;right:60px;
+  position:absolute;top:-30px;left:-20px;z-index:10;
   background:var(--white);border:3px solid var(--ink);
-  border-radius:20px 20px 4px 20px;
+  border-radius:20px 20px 20px 4px;
   padding:.8rem 1.2rem;
   font-family:'Yomogi',cursive;font-size:1rem;color:var(--ink);
   box-shadow:var(--shadow);white-space:nowrap;
   animation:bubblePop .5s cubic-bezier(.34,1.56,.64,1) both,bubbleFloat 3s ease-in-out 1s infinite;
+}
+.speech-bubble::before{
+  content:'';position:absolute;
+  width:16px;height:16px;
+  background:var(--white);border:3px solid var(--ink);
+  border-radius:50%;
+  bottom:-26px;left:30px;
+}
+.speech-bubble::after{
+  content:'';position:absolute;
+  width:10px;height:10px;
+  background:var(--white);border:3px solid var(--ink);
+  border-radius:50%;
+  bottom:-40px;left:48px;
 }
 @keyframes bubblePop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
 @keyframes bubbleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
@@ -678,7 +692,9 @@ footer{
   .hero-left{padding:0}
   .hero-right{min-height:300px}
   .mascot-body{width:200px}
-  .speech-bubble{font-size:.85rem;padding:.5rem .8rem;right:10px;white-space:normal;max-width:180px}
+  .speech-bubble{font-size:.82rem;padding:.5rem .7rem;left:-10px;top:-20px;white-space:normal;max-width:170px}
+.speech-bubble::before{width:12px;height:12px;bottom:-22px;left:20px}
+.speech-bubble::after{width:8px;height:8px;bottom:-34px;left:34px}
   .about-grid,.steps-row{grid-template-columns:1fr}
   .ggrid{grid-template-columns:repeat(2,1fr)}
   .gi1{grid-column:span 2}
