@@ -523,6 +523,54 @@ nav{
 }
 .gitem:hover::after{opacity:1}
 
+.gallery-overlay{
+  position:fixed;inset:0;
+  background:rgba(26,10,46,.85);
+  backdrop-filter:blur(8px);
+  display:none;align-items:center;justify-content:center;
+  z-index:10000;padding:1.5rem;
+}
+.gallery-overlay.show{display:flex}
+.gallery-modal{
+  width:100%;max-width:760px;
+  background:var(--white);
+  border:4px solid var(--ink);
+  border-radius:28px;
+  box-shadow:10px 10px 0 var(--ink);
+  overflow:hidden;
+  animation:modalPop .35s ease-out;
+}
+@keyframes modalPop{from{opacity:0;transform:translateY(24px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+.gallery-modal-img{
+  width:100%;min-height:360px;
+  background-size:cover;
+  background-position:center;
+}
+.gallery-modal-body{
+  padding:1.5rem;
+}
+.gallery-modal-title{
+  font-family:'Lilita One',cursive;
+  font-size:1.6rem;color:var(--ink);
+  margin-bottom:.8rem;
+}
+.gallery-modal-desc{
+  font-size:.95rem;color:var(--ink);opacity:.75;line-height:1.7;margin-bottom:1.2rem;
+}
+.gallery-modal-close{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:.75rem 1.25rem;
+  border-radius:999px;
+  border:3px solid var(--ink);
+  background:var(--hot-pink);
+  color:var(--white);
+  font-family:'Fredoka',sans-serif;
+  font-weight:700;
+  cursor:pointer;
+  transition:all .2s;
+}
+.gallery-modal-close:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+
 /* ── FAQ ─────────────────────── */
 #faq{background:var(--cream);padding:5rem 3rem;border-top:4px solid var(--ink)}
 .faq-list{max-width:720px;margin:2.5rem auto 0}
@@ -1179,6 +1227,17 @@ footer{
   </div>
 </section>
 
+<div class="gallery-overlay" id="galleryOverlay" aria-hidden="true">
+  <div class="gallery-modal" role="dialog" aria-modal="true" aria-labelledby="galleryModalTitle">
+    <div class="gallery-modal-img" id="galleryModalImg"></div>
+    <div class="gallery-modal-body">
+      <div class="gallery-modal-title" id="galleryModalTitle">Gallery Preview</div>
+      <div class="gallery-modal-desc" id="galleryModalDesc">Enjoy a closer look at this handmade crochet piece. Click close or outside the image to return to the gallery.</div>
+      <button class="gallery-modal-close" id="galleryModalClose">Close</button>
+    </div>
+  </div>
+</div>
+
 <!-- FAQ -->
 <section id="faq">
   <div style="max-width:800px;margin:0 auto;text-align:center">
@@ -1327,9 +1386,43 @@ document.getElementById('eggBtn').addEventListener('click',e=>{
 document.getElementById('eggClose').addEventListener('click',()=>document.getElementById('eggOverlay').classList.remove('show'));
 document.getElementById('eggOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('eggOverlay'))document.getElementById('eggOverlay').classList.remove('show')});
 
-// GALLERY SPARKLES
-document.querySelectorAll('.gitem').forEach(g=>{
-  g.addEventListener('click',e=>spawnSparkles(e.clientX,e.clientY,8));
+// GALLERY POPUP
+const galleryOverlay=document.getElementById('galleryOverlay');
+const galleryImg=document.getElementById('galleryModalImg');
+const galleryTitle=document.getElementById('galleryModalTitle');
+const galleryDesc=document.getElementById('galleryModalDesc');
+const galleryClose=document.getElementById('galleryModalClose');
+
+function openGalleryModal(target){
+  const bg = getComputedStyle(target).backgroundImage;
+  const imageUrl = bg.slice(5, -2);
+  const title = target.dataset.title || 'Gallery Preview';
+  galleryImg.style.backgroundImage = `url('${imageUrl}')`;
+  galleryTitle.textContent = title;
+  galleryDesc.textContent = target.dataset.desc || 'Enjoy a closer look at this handmade crochet piece. Click close or outside the image to return to the gallery.';
+  galleryOverlay.classList.add('show');
+  galleryOverlay.setAttribute('aria-hidden','false');
+}
+
+document.querySelectorAll('.gitem').forEach((g,index)=>{
+  const defaultTitles=['Cherry Blossom Amigurumi','Moonlit Tote','Kawaii Bow Headband','Ocean Dream Crop Top','Forest Spirit Pouch','Star Keeper Set','Limited Edition Charm'];
+  if(!g.dataset.title) g.dataset.title = defaultTitles[index] || 'Gallery Preview';
+  g.dataset.desc = g.dataset.desc || 'Handmade crochet art inspired by anime and magic.';
+  g.addEventListener('click',e=>{
+    openGalleryModal(g);
+    spawnSparkles(e.clientX,e.clientY,8);
+  });
+});
+
+galleryClose.addEventListener('click',()=>{
+  galleryOverlay.classList.remove('show');
+  galleryOverlay.setAttribute('aria-hidden','true');
+});
+galleryOverlay.addEventListener('click',e=>{
+  if(e.target===galleryOverlay){
+    galleryOverlay.classList.remove('show');
+    galleryOverlay.setAttribute('aria-hidden','true');
+  }
 });
 
 // CONTACT CARDS
