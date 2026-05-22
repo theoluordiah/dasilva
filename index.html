@@ -315,10 +315,13 @@ nav{
 
 .products-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(270px,300px));
+  grid-auto-rows:1fr;
   gap:1.5rem;max-width:1300px;margin:0 auto;
+  justify-content:center;
 }
 .pcard{
+  display:flex;flex-direction:column;height:100%;
   background:var(--white);
   border:3px solid var(--ink);
   border-radius:24px;
@@ -329,7 +332,8 @@ nav{
 }
 .pcard:hover{transform:translate(-4px,-6px);box-shadow:10px 10px 0 var(--ink)}
 .pcard-img{
-  height:220px;position:relative;
+  width:100%;aspect-ratio:4/3;position:relative;
+  flex:0 0 auto;
   display:flex;align-items:center;justify-content:center;
   font-size:5.5rem;
   border-bottom:3px solid var(--ink);
@@ -355,13 +359,13 @@ nav{
   transition:all .2s;
 }
 .pcard-fav:hover{background:var(--hot-pink);transform:scale(1.2)}
-.pcard-body{padding:1.2rem 1.4rem}
+.pcard-body{display:flex;flex:1;flex-direction:column;padding:1.2rem 1.4rem}
 .pcard-name{
   font-family:'Lilita One',cursive;
   font-size:1.2rem;color:var(--ink);margin-bottom:.3rem;
 }
 .pcard-desc{font-size:.85rem;color:var(--ink);opacity:.6;line-height:1.6;margin-bottom:1rem;font-weight:500}
-.pcard-foot{display:flex;align-items:center;justify-content:space-between}
+.pcard-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
 .pcard-price{font-family:'Lilita One',cursive;font-size:1.4rem;color:var(--hot-pink)}
 .pcard-add{
   background:var(--ink);color:var(--white);
@@ -371,6 +375,12 @@ nav{
   cursor:pointer;transition:all .2s;
 }
 .pcard-add:hover{background:var(--hot-pink);transform:scale(1.08)}
+
+/* Filter controls */
+.filter-row{display:flex;gap:.5rem;justify-content:center;align-items:center;flex-wrap:wrap;margin-bottom:1rem}
+.category-btn{background:var(--white);border:2px solid var(--ink);padding:.45rem .9rem;border-radius:999px;font-weight:700;cursor:pointer;transition:all .12s;margin:.2rem}
+.category-btn.active{background:var(--hot-pink);color:var(--white);border-color:var(--ink)}
+.pcard.hidden{display:none!important}
 
 /* ── ABOUT ─────────────────────── */
 #about{
@@ -804,7 +814,7 @@ footer{
   section{padding:3rem 1.5rem}
   #collections,#about,#anime,#custom,#testimonials,#gallery,#faq,#contact{padding:3rem 1.5rem}
   .products-grid{gap:1rem}
-  .pcard-img{height:190px}
+  .pcard-img{height:auto}
   .tgrid{gap:1rem}
   .clinks{gap:.8rem}
   .ccard{min-width:150px;padding:1.5rem}
@@ -827,8 +837,8 @@ footer{
   .hero-btns .btn{width:100%;justify-content:center}
   .mascot-body{width:140px}
   .hero-right{min-height:auto!important;padding:.5rem 0}
-  .products-grid{grid-template-columns:1fr;gap:.8rem}
-  .pcard-img{height:200px;font-size:4rem}
+  .products-grid{grid-template-columns:minmax(0,300px);gap:.8rem;justify-content:center}
+  .pcard-img{height:auto;font-size:4rem}
   .pcard-body{padding:1rem}
   .pcard-name{font-size:1.1rem}
   .pcard-desc{font-size:.8rem}
@@ -940,14 +950,18 @@ footer{
   "description": "Handmade anime-inspired crochet products available at Da Silva Crochet",
   "url": "https://dasilvacrochet.com",
   "itemListElement": [
-    {"@type": "ListItem", "position": 1, "name": "Sakura Bunny Amigurumi", "description": "Soft cotton bunny with cherry blossom accessories", "offers": {"@type": "Offer", "price": "8500", "priceCurrency": "NGN"}},
-    {"@type": "ListItem", "position": 2, "name": "Moonlit Tote Bag", "description": "Open-weave tote with crescent moon motif", "offers": {"@type": "Offer", "price": "12000", "priceCurrency": "NGN"}},
-    {"@type": "ListItem", "position": 3, "name": "Kawaii Bow Headband", "description": "Chunky crochet headband with big bow", "offers": {"@type": "Offer", "price": "4200", "priceCurrency": "NGN"}},
-    {"@type": "ListItem", "position": 4, "name": "Ocean Dream Crop Top", "description": "Open-weave crop with sea-glass blue yarn", "offers": {"@type": "Offer", "price": "18000", "priceCurrency": "NGN"}},
-    {"@type": "ListItem", "position": 5, "name": "Forest Spirit Earring Set", "description": "Tiny crocheted leaves and berries earrings", "offers": {"@type": "Offer", "price": "6800", "priceCurrency": "NGN"}},
+    {"@type": "ListItem", "position": 1, "name": "Candy Granny Bucket Hat", "description": "Cozy handmade bucket hat with bright granny square crochet panels", "offers": {"@type": "Offer", "price": "8500", "priceCurrency": "NGN"}},
+    {"@type": "ListItem", "position": 2, "name": "Ruffle Granny Bucket Hat", "description": "Soft crochet bucket hat made from granny square panels with a flouncy ruffle edge", "offers": {"@type": "Offer", "price": "12000", "priceCurrency": "NGN"}},
+    {"@type": "ListItem", "position": 3, "name": "Rainbow Granny Crochet Top", "description": "Vintage-inspired granny square crochet top with bright colours and cozy texture", "offers": {"@type": "Offer", "price": "4200", "priceCurrency": "NGN"}},
+    {"@type": "ListItem", "position": 4, "name": "Pastel Puff Scrunchies", "description": "Set of soft crochet scrunchies in pastel tones, perfect for anime-inspired hairstyles", "offers": {"@type": "Offer", "price": "18000", "priceCurrency": "NGN"}},
+    {"@type": "ListItem", "position": 5, "name": "Cozy Drawstring Earbud Pouch", "description": "Crochet drawstring pouch for AirPods and earbuds with soft yarn protection", "offers": {"@type": "Offer", "price": "6800", "priceCurrency": "NGN"}},
     {"@type": "ListItem", "position": 6, "name": "Star Keeper Mini Pouch", "description": "Tiny crochet pouch with star motif", "offers": {"@type": "Offer", "price": "3500", "priceCurrency": "NGN"}},
-    {"@type": "ListItem", "position": 7, "name": "Sunset Crochet Dress", "description": "Soft pastel crochet dress with breezy texture", "offers": {"@type": "Offer", "price": "16500", "priceCurrency": "NGN"}},
-    {"@type": "ListItem", "position": 8, "name": "Petal Bloom Earrings", "description": "Handmade crochet earrings with floral charm", "offers": {"@type": "Offer", "price": "3200", "priceCurrency": "NGN"}}
+    {"@type": "ListItem", "position": 7, "name": "Sunset Breeze Crochet Dress", "description": "Soft pastel crochet dress with breezy texture", "offers": {"@type": "Offer", "price": "16500", "priceCurrency": "NGN"}},
+    {"@type": "ListItem", "position": 8, "name": "Petal Bloom Earrings", "description": "Handmade crochet earrings with floral charm", "offers": {"@type": "Offer", "price": "3200", "priceCurrency": "NGN"}},
+    {"@type": "ListItem", "position": 9, "name": "Blue Heart Granny Tote", "description": "Blue and cream handmade crochet tote bag with a heart granny square design", "offers": {"@type": "Offer", "price": "12000", "priceCurrency": "NGN"}},
+    {"@type": "ListItem", "position": 10, "name": "Daisy Patch Tote", "description": "Colourful crochet tote bag made with floral granny square panels", "offers": {"@type": "Offer", "price": "15000", "priceCurrency": "NGN"}},
+    {"@type": "ListItem", "position": 11, "name": "Pink Heart Tote", "description": "Soft pink and cream crochet tote bag with heart granny square panels", "offers": {"@type": "Offer", "price": "12000", "priceCurrency": "NGN"}},
+    {"@type": "ListItem", "position": 12, "name": "Blush Bloom Crochet Top", "description": "Sweet blush crochet top with dreamy floral texture", "offers": {"@type": "Offer", "price": "9800", "priceCurrency": "NGN"}}
   ]
 }
 </script>
@@ -1166,78 +1180,86 @@ footer{
     <h2 class="sec-title">Shop The <span>Magic</span></h2>
     <p class="sec-sub">Every piece is one-of-a-kind and made with your vibe in mind.</p>
   </div>
+  <div class="filter-row reveal" role="tablist" aria-label="Product categories">
+    <button class="category-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+    <button class="category-btn" data-filter="hats" role="tab">Hats</button>
+    <button class="category-btn" data-filter="tops" role="tab">Tops</button>
+    <button class="category-btn" data-filter="accessories" role="tab">Accessories</button>
+    <button class="category-btn" data-filter="dresses" role="tab">Dresses</button>
+    <button class="category-btn" data-filter="totes" role="tab">Tote Bags</button>
+  </div>
   <div class="products-grid">
-    <div class="pcard reveal">
-      <div class="pcard-img" role="img" aria-label="Sakura Bunny Amigurumi - handmade crochet bunny plush with cherry blossom accessories" style="background:url('https://i.pinimg.com/736x/1f/11/0c/1f110c6199b346260952228ebba65cc8.jpg') center/cover no-repeat">
+    <div class="pcard reveal" data-category="hats">
+      <div class="pcard-img" role="img" aria-label="Candy Granny Bucket Hat - handmade crochet bucket hat with colorful granny square pattern" style="background:url('https://i.pinimg.com/736x/1f/11/0c/1f110c6199b346260952228ebba65cc8.jpg') center/cover no-repeat">
         <div class="pcard-badge hot">🔥 New Drop</div>
         <div class="pcard-fav" onclick="favToggle(this,event)" role="button" tabindex="0" aria-label="Add to favourites">🤍</div>
       </div>
       <div class="pcard-body">
-        <h3 class="pcard-name">Sakura Bunny Amigurumi</h3>
-        <p class="pcard-desc">Soft cotton bunny with cherry blossom accessories. Your new desk bestie.</p>
+        <h3 class="pcard-name">Candy Granny Bucket Hat</h3>
+        <p class="pcard-desc">Cozy handmade bucket hat with bright granny square crochet panels. A stylish accent for everyday outfits.</p>
         <div class="pcard-foot">
           <div class="pcard-price" aria-label="Price: 8,500 Naira">₦8,500</div>
-          <button class="pcard-add" onclick="addCart(this,event)" aria-label="Add Sakura Bunny Amigurumi to cart">+ Add</button>
+          <button class="pcard-add" onclick="addCart(this,event)" aria-label="Add Candy Granny Bucket Hat to cart">+ Add</button>
         </div>
       </div>
     </div>
-    <div class="pcard reveal">
-      <div class="pcard-img" role="img" aria-label="Moonlit Tote Bag - handmade crochet tote bag with crescent moon motif" style="background:url('https://i.pinimg.com/736x/87/17/07/871707800f2ffffdff6f5f02604c6ad8.jpg') center/cover no-repeat">
+    <div class="pcard reveal" data-category="hats">
+      <div class="pcard-img" role="img" aria-label="Ruffle Granny Bucket Hat - handmade crochet hat with ruffle trim" style="background:url('https://i.pinimg.com/736x/87/17/07/871707800f2ffffdff6f5f02604c6ad8.jpg') center/cover no-repeat">
         <div class="pcard-badge">⭐ Bestseller</div>
         <div class="pcard-fav" onclick="favToggle(this,event)" role="button" tabindex="0" aria-label="Add to favourites">🤍</div>
       </div>
       <div class="pcard-body">
-        <h3 class="pcard-name">Moonlit Tote Bag</h3>
-        <p class="pcard-desc">Open-weave tote with crescent moon motif. Campus-ready, anime-approved.</p>
+        <h3 class="pcard-name">Ruffle Granny Bucket Hat</h3>
+        <p class="pcard-desc">Soft crochet hat made from granny square panels and finished with a flouncy ruffle edge.</p>
         <div class="pcard-foot">
           <div class="pcard-price" aria-label="Price: 12,000 Naira">₦12,000</div>
-          <button class="pcard-add" onclick="addCart(this,event)" aria-label="Add Moonlit Tote Bag to cart">+ Add</button>
+          <button class="pcard-add" onclick="addCart(this,event)" aria-label="Add Ruffle Granny Bucket Hat to cart">+ Add</button>
         </div>
       </div>
     </div>
-    <div class="pcard reveal">
-      <div class="pcard-img" role="img" aria-label="Kawaii Bow Headband - chunky crochet headband with big bow" style="background:url('https://i.pinimg.com/736x/e8/0d/88/e80d88b4da09e3d48ba550fc47f36b5c.jpg') center/cover no-repeat">
+    <div class="pcard reveal" data-category="tops">
+      <div class="pcard-img" role="img" aria-label="Rainbow Granny Crochet Top - handmade crochet top with colourful granny square motifs" style="background:url('https://i.pinimg.com/736x/e8/0d/88/e80d88b4da09e3d48ba550fc47f36b5c.jpg') center/cover no-repeat">
         <div class="pcard-badge">💛 Fan Fav</div>
         <div class="pcard-fav" onclick="favToggle(this,event)" role="button" tabindex="0" aria-label="Add to favourites">🤍</div>
       </div>
       <div class="pcard-body">
-        <h3 class="pcard-name">Kawaii Bow Headband</h3>
-        <p class="pcard-desc">Chunky crochet headband with big bow. Because accessories are personality.</p>
+        <h3 class="pcard-name">Rainbow Granny Crochet Top</h3>
+        <p class="pcard-desc">Vintage-inspired granny square crochet top with bright colours and cozy texture.</p>
         <div class="pcard-foot">
           <div class="pcard-price" aria-label="Price: 4,200 Naira">₦4,200</div>
-          <button class="pcard-add" onclick="addCart(this,event)" aria-label="Add Kawaii Bow Headband to cart">+ Add</button>
+          <button class="pcard-add" onclick="addCart(this,event)" aria-label="Add Rainbow Granny Crochet Top to cart">+ Add</button>
         </div>
       </div>
     </div>
-    <div class="pcard reveal">
-      <div class="pcard-img" role="img" aria-label="Ocean Dream Crop Top - handmade crochet crop top with sea-glass blue yarn" style="background:url('https://i.pinimg.com/1200x/29/58/39/295839cd7cddf027fd73539290f7845a.jpg') center/cover no-repeat">
+    <div class="pcard reveal" data-category="accessories">
+      <div class="pcard-img" role="img" aria-label="Pastel Puff Scrunchies - soft handmade crochet scrunchies in pastel tones" style="background:url('https://i.pinimg.com/1200x/29/58/39/295839cd7cddf027fd73539290f7845a.jpg') center/cover no-repeat">
         <div class="pcard-badge hot">🎯 Limited</div>
         <div class="pcard-fav" onclick="favToggle(this,event)" role="button" tabindex="0" aria-label="Add to favourites">🤍</div>
       </div>
       <div class="pcard-body">
-        <h3 class="pcard-name">Ocean Dream Crop Top</h3>
-        <p class="pcard-desc">Open-weave crop with sea-glass blue yarn. Summer main character energy.</p>
+        <h3 class="pcard-name">Pastel Puff Scrunchies</h3>
+        <p class="pcard-desc">Set of soft crochet scrunchies in pastel tones, perfect for anime-inspired hairstyles.</p>
         <div class="pcard-foot">
           <div class="pcard-price" aria-label="Price: 18,000 Naira">₦18,000</div>
-          <button class="pcard-add" onclick="addCart(this,event)" aria-label="Add Ocean Dream Crop Top to cart">+ Add</button>
+          <button class="pcard-add" onclick="addCart(this,event)" aria-label="Add Pastel Puff Scrunchies to cart">+ Add</button>
         </div>
       </div>
     </div>
-    <div class="pcard reveal">
-      <div class="pcard-img" role="img" aria-label="Forest Spirit Earring Set - tiny handmade crochet earrings with leaves and berries" style="background:url('https://i.pinimg.com/1200x/52/a2/a6/52a2a69c6e9c58a7cb1e13331d15f357.jpg') center/cover no-repeat">
+    <div class="pcard reveal" data-category="accessories">
+      <div class="pcard-img" role="img" aria-label="Cozy Drawstring Earbud Pouch - handmade crochet pouch sized for AirPods and earbuds" style="background:url('https://i.pinimg.com/1200x/52/a2/a6/52a2a69c6e9c58a7cb1e13331d15f357.jpg') center/cover no-repeat">
         <div class="pcard-badge">🌿 Cozy Pick</div>
         <div class="pcard-fav" onclick="favToggle(this,event)" role="button" tabindex="0" aria-label="Add to favourites">🤍</div>
       </div>
       <div class="pcard-body">
-        <h3 class="pcard-name">Forest Spirit Earring Set</h3>
-        <p class="pcard-desc">Tiny crocheted leaves + berries. Straight from a Ghibli forest, straight to you.</p>
+        <h3 class="pcard-name">Cozy Drawstring Earbud Pouch</h3>
+        <p class="pcard-desc">Crochet drawstring pouch for AirPods and earbuds, with soft yarn protection and a cute handmade finish.</p>
         <div class="pcard-foot">
           <div class="pcard-price" aria-label="Price: 6,800 Naira">₦6,800</div>
-          <button class="pcard-add" onclick="addCart(this,event)" aria-label="Add Forest Spirit Earring Set to cart">+ Add</button>
+          <button class="pcard-add" onclick="addCart(this,event)" aria-label="Add Cozy Drawstring Earbud Pouch to cart">+ Add</button>
         </div>
       </div>
     </div>
-    <div class="pcard reveal">
+    <!-- <div class="pcard reveal" data-category="accessories">
       <div class="pcard-img" role="img" aria-label="Star Keeper Mini Pouch - handmade crochet mini pouch with star motif" style="background:url('https://i.pinimg.com/1200x/97/86/30/978630b1f83b4be1f92b6fbc8fd54aeb.jpg') center/cover no-repeat">
         <div class="pcard-badge">🎁 Gift Pick</div>
         <div class="pcard-fav" onclick="favToggle(this,event)" role="button" tabindex="0" aria-label="Add to favourites">🤍</div>
@@ -1250,22 +1272,22 @@ footer{
           <button class="pcard-add" onclick="addCart(this,event)" aria-label="Add Star Keeper Mini Pouch to cart">+ Add</button>
         </div>
       </div>
-    </div>
-    <div class="pcard reveal">
-      <div class="pcard-img" role="img" aria-label="Sunset Crochet Dress - handmade pastel crochet dress with breezy texture" style="background:url('https://i.pinimg.com/736x/a3/f0/3e/a3f03e0dcac6f36c8ad3391323536daf.jpg') center/cover no-repeat">
+    </div> -->
+    <div class="pcard reveal" data-category="dresses">
+      <div class="pcard-img" role="img" aria-label="Sunset Breeze Crochet Dress - handmade pastel crochet dress with breezy texture" style="background:url('https://i.pinimg.com/736x/a3/f0/3e/a3f03e0dcac6f36c8ad3391323536daf.jpg') center/cover no-repeat">
         <div class="pcard-badge hot">🌞 Summer</div>
         <div class="pcard-fav" onclick="favToggle(this,event)" role="button" tabindex="0" aria-label="Add to favourites">🤍</div>
       </div>
       <div class="pcard-body">
-        <h3 class="pcard-name">Sunset Crochet Dress</h3>
+        <h3 class="pcard-name">Sunset Breeze Crochet Dress</h3>
         <p class="pcard-desc">Soft pastel crochet dress with breezy texture for sunny days and anime-inspired style.</p>
         <div class="pcard-foot">
           <div class="pcard-price" aria-label="Price: 16,500 Naira">₦16,500</div>
-          <button class="pcard-add" onclick="addCart(this,event)" aria-label="Add Sunset Crochet Dress to cart">+ Add</button>
+          <button class="pcard-add" onclick="addCart(this,event)" aria-label="Add Sunset Breeze Crochet Dress to cart">+ Add</button>
         </div>
       </div>
     </div>
-    <div class="pcard reveal">
+    <div class="pcard reveal" data-category="accessories">
       <div class="pcard-img" role="img" aria-label="Petal Bloom Earrings - handmade crochet earrings with delicate floral charm" style="background:url('https://i.pinimg.com/736x/26/d6/78/26d6785099e38473af0b95db87cbb3d9.jpg') center/cover no-repeat">
         <div class="pcard-badge">✨</div>
         <div class="pcard-fav" onclick="favToggle(this,event)" role="button" tabindex="0" aria-label="Add to favourites">🤍</div>
@@ -1279,17 +1301,59 @@ footer{
         </div>
       </div>
     </div>
-    <div class="pcard reveal">
-      <div class="pcard-img" role="img" aria-label="Blush Bunny Crop Top - handmade sweet blush crochet top with floral texture" style="background:url('https://i.pinimg.com/1200x/99/e1/e7/99e1e731ada8013ba8bc1a6d9f3fd8b4.jpg') center/cover no-repeat">
+    <div class="pcard reveal" data-category="tops">
+      <div class="pcard-img" role="img" aria-label="Blush Bloom Crochet Top - handmade sweet blush crochet top with floral texture" style="background:url('https://i.pinimg.com/1200x/99/e1/e7/99e1e731ada8013ba8bc1a6d9f3fd8b4.jpg') center/cover no-repeat">
         <div class="pcard-badge">🌸 New</div>
         <div class="pcard-fav" onclick="favToggle(this,event)" role="button" tabindex="0" aria-label="Add to favourites">🤍</div>
       </div>
       <div class="pcard-body">
-        <h3 class="pcard-name">Blush Bunny Crop Top</h3>
+        <h3 class="pcard-name">Blush Bloom Crochet Top</h3>
         <p class="pcard-desc">Sweet blush crochet top with dreamy floral texture — a perfect kawaii wardrobe staple.</p>
         <div class="pcard-foot">
           <div class="pcard-price" aria-label="Price: 9,800 Naira">₦9,800</div>
-          <button class="pcard-add" onclick="addCart(this,event)" aria-label="Add Blush Bunny Crop Top to cart">+ Add</button>
+          <button class="pcard-add" onclick="addCart(this,event)" aria-label="Add Blush Bloom Crochet Top to cart">+ Add</button>
+        </div>
+      </div>
+    </div>
+    <div class="pcard reveal" data-category="totes">
+      <div class="pcard-img" role="img" aria-label="Blue Heart Granny Tote - blue and cream handmade crochet tote bag with heart granny square design" style="background:url('assets/totebags/WhatsApp Image 2026-05-21 at 5.25.57 PM.jpeg') center/cover no-repeat">
+        <div class="pcard-badge">💙 Tote</div>
+        <div class="pcard-fav" onclick="favToggle(this,event)" role="button" tabindex="0" aria-label="Add to favourites">🤍</div>
+      </div>
+      <div class="pcard-body">
+        <h3 class="pcard-name">Blue Heart Granny Tote</h3>
+        <p class="pcard-desc">Blue and cream crochet tote with a heart center, sturdy straps, and roomy everyday shape.</p>
+        <div class="pcard-foot">
+          <div class="pcard-price" aria-label="Price: 12,000 Naira">₦12,000</div>
+          <button class="pcard-add" onclick="addCart(this,event)" aria-label="Add Blue Heart Granny Tote to cart">+ Add</button>
+        </div>
+      </div>
+    </div>
+    <div class="pcard reveal" data-category="totes">
+      <div class="pcard-img" role="img" aria-label="Daisy Patch Tote - colourful handmade crochet tote bag with floral granny square panels" style="background:url('assets/totebags/WhatsApp Image 2026-05-21 at 5.25.58 PM (1).jpeg') center/cover no-repeat">
+        <div class="pcard-badge hot">🌼 Fresh</div>
+        <div class="pcard-fav" onclick="favToggle(this,event)" role="button" tabindex="0" aria-label="Add to favourites">🤍</div>
+      </div>
+      <div class="pcard-body">
+        <h3 class="pcard-name">Daisy Patch Tote</h3>
+        <p class="pcard-desc">Colourful daisy granny squares joined into a soft statement bag for books, yarn, and daily bits.</p>
+        <div class="pcard-foot">
+          <div class="pcard-price" aria-label="Price: 15,000 Naira">₦15,000</div>
+          <button class="pcard-add" onclick="addCart(this,event)" aria-label="Add Daisy Patch Tote to cart">+ Add</button>
+        </div>
+      </div>
+    </div>
+    <div class="pcard reveal" data-category="totes">
+      <div class="pcard-img" role="img" aria-label="Pink Heart Tote - soft pink and cream handmade crochet tote bag with heart granny square panels" style="background:url('assets/totebags/WhatsApp Image 2026-05-21 at 5.26.01 PM.jpeg') center/cover no-repeat">
+        <div class="pcard-badge">💕 Sweet Pick</div>
+        <div class="pcard-fav" onclick="favToggle(this,event)" role="button" tabindex="0" aria-label="Add to favourites">🤍</div>
+      </div>
+      <div class="pcard-body">
+        <h3 class="pcard-name">Pink Heart Tote</h3>
+        <p class="pcard-desc">Soft pink and cream crochet tote with heart squares and a cozy handmade finish.</p>
+        <div class="pcard-foot">
+          <div class="pcard-price" aria-label="Price: 12,000 Naira">₦12,000</div>
+          <button class="pcard-add" onclick="addCart(this,event)" aria-label="Add Pink Heart Tote to cart">+ Add</button>
         </div>
       </div>
     </div>
@@ -1388,7 +1452,7 @@ footer{
       <div class="tcard reveal">
         <div class="t-stars">★★★★★</div>
         <div class="t-quote">"</div>
-        <div class="t-text">The Moonlit Tote is my most-complimented item ever. People refuse to believe it's handmade. The stitching, the quality — it honestly doesn't feel real.</div>
+        <div class="t-text">The Daisy Patch Tote is my most-complimented item ever. People refuse to believe it's handmade. The stitching, the quality — it honestly doesn't feel real.</div>
         <div class="t-author">
           <div class="t-av" style="background:#E8D5F5">🌙</div>
           <div><div class="t-name">Chiamaka Eze</div><div class="t-loc">Abuja, Nigeria</div></div>
@@ -1414,12 +1478,12 @@ footer{
     <h2 class="sec-title reveal">A World Built From <span>Yarn</span></h2>
     <div class="ggrid">
       <div class="gitem gi1 reveal" role="img" aria-label="Cherry Blossom Amigurumi - handmade crochet plush with sakura flowers" style="background:url('https://i.pinimg.com/1200x/a9/5d/e0/a95de0c18bc52e0fb578024f68b8ecb7.jpg') center/cover no-repeat"></div>
-      <div class="gitem gi2 reveal" role="img" aria-label="Moonlit Tote - handmade crochet tote bag" style="background:url('https://i.pinimg.com/736x/1f/11/0c/1f110c6199b346260952228ebba65cc8.jpg') center/cover no-repeat"></div>
-      <div class="gitem gi3 reveal" role="img" aria-label="Kawaii Bow Headband - chunky crochet headband" style="background:url('https://i.pinimg.com/736x/87/17/07/871707800f2ffffdff6f5f02604c6ad8.jpg') center/cover no-repeat"></div>
-      <div class="gitem gi4 reveal" role="img" aria-label="Ocean Dream Crop Top - handmade crochet top" style="background:url('https://i.pinimg.com/736x/e8/0d/88/e80d88b4da09e3d48ba550fc47f36b5c.jpg') center/cover no-repeat"></div>
-      <div class="gitem gi5 reveal" role="img" aria-label="Forest Spirit Pouch - handmade crochet mini pouch" style="background:url('https://i.pinimg.com/1200x/29/58/39/295839cd7cddf027fd73539290f7845a.jpg') center/cover no-repeat"></div>
+      <div class="gitem gi2 reveal" role="img" aria-label="Daisy Patch Tote - handmade crochet tote bag" style="background:url('assets/totebags/WhatsApp Image 2026-05-21 at 5.25.58 PM (1).jpeg') center/cover no-repeat"></div>
+      <div class="gitem gi3 reveal" role="img" aria-label="Ruffle Granny Bucket Hat - handmade crochet hat with ruffle trim" style="background:url('https://i.pinimg.com/736x/87/17/07/871707800f2ffffdff6f5f02604c6ad8.jpg') center/cover no-repeat"></div>
+      <div class="gitem gi4 reveal" role="img" aria-label="Rainbow Granny Crochet Top - handmade crochet top" style="background:url('https://i.pinimg.com/736x/e8/0d/88/e80d88b4da09e3d48ba550fc47f36b5c.jpg') center/cover no-repeat"></div>
+      <div class="gitem gi5 reveal" role="img" aria-label="Pastel Puff Scrunchies - handmade crochet scrunchies" style="background:url('https://i.pinimg.com/1200x/29/58/39/295839cd7cddf027fd73539290f7845a.jpg') center/cover no-repeat"></div>
       <div class="gitem gi6 reveal" role="img" aria-label="Star Keeper Set - handmade crochet set" style="background:url('https://i.pinimg.com/1200x/52/a2/a6/52a2a69c6e9c58a7cb1e13331d15f357.jpg') center/cover no-repeat"></div>
-      <div class="gitem gi7 reveal" role="img" aria-label="Limited Edition Charm - handmade crochet charm" style="background:url('https://i.pinimg.com/1200x/97/86/30/978630b1f83b4be1f92b6fbc8fd54aeb.jpg') center/cover no-repeat"></div>
+      <!-- <div class="gitem gi7 reveal" role="img" aria-label="Limited Edition Charm - handmade crochet charm" style="background:url('https://i.pinimg.com/1200x/97/86/30/978630b1f83b4be1f92b6fbc8fd54aeb.jpg') center/cover no-repeat"></div> -->
     </div>
     <p style="margin-top:1.5rem;font-size:.9rem;opacity:.6;font-weight:600" class="reveal">
       Follow <strong style="color:var(--hot-pink)">@dasilva.crochet</strong> on Instagram for daily drops ✿
@@ -1608,7 +1672,7 @@ function openGalleryModal(target){
 }
 
 document.querySelectorAll('.gitem').forEach((g,index)=>{
-  const defaultTitles=['Cherry Blossom Amigurumi','Moonlit Tote','Kawaii Bow Headband','Ocean Dream Crop Top','Forest Spirit Pouch','Star Keeper Set','Limited Edition Charm'];
+  const defaultTitles=['Cherry Blossom Amigurumi','Daisy Patch Tote','Ruffle Granny Bucket Hat','Rainbow Granny Crochet Top','Pastel Puff Scrunchies','Star Keeper Set','Limited Edition Charm'];
   if(!g.dataset.title) g.dataset.title = defaultTitles[index] || 'Gallery Preview';
   g.dataset.desc = g.dataset.desc || 'Handmade crochet art inspired by anime and magic.';
   g.addEventListener('click',e=>{
@@ -1651,6 +1715,25 @@ ham.addEventListener('click',()=>{
 navL.querySelectorAll('a').forEach(a=>{
   a.addEventListener('click',()=>{
     ham.classList.remove('active');navL.classList.remove('open');
+  });
+});
+
+// CATEGORY FILTER
+const categoryButtons = document.querySelectorAll('.category-btn');
+function filterCategory(cat){
+  document.querySelectorAll('.pcard').forEach(card=>{
+    if(cat === 'all' || (card.dataset.category && card.dataset.category === cat)){
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+categoryButtons.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    categoryButtons.forEach(b=>{b.classList.remove('active');b.setAttribute('aria-selected','false')});
+    btn.classList.add('active');btn.setAttribute('aria-selected','true');
+    filterCategory(btn.dataset.filter);
   });
 });
 
